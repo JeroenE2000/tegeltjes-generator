@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Tegeltjesmaker</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Figtree:wght@400;500;600&family=IM+Fell+English:ital@0;1&family=Pinyon+Script&family=UnifrakturMaguntia&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+<script type="module" src="js/main.js"></script>
+</head>
+<body>
+<header class="top">
+  <h1>Tegeltjesmaker</h1>
+  <p>Schrijf je eigen wijsheid op een Delfts tegeltje en stuur ’m door als foto of gif.</p>
+</header>
+
+<main class="layout">
+  <section class="stage" aria-label="Voorbeeld">
+    <canvas id="tile" role="img" aria-label="Voorbeeld van je tegeltje"></canvas>
+  </section>
+
+  <form class="panel" id="controls" autocomplete="off">
+    <fieldset>
+      <legend>Wat staat erop?</legend>
+      <textarea id="text" name="text" maxlength="140" aria-label="Tekst op het tegeltje">Oost west,
+thuis best</textarea>
+      <div class="row">
+        <span class="count" id="count"></span>
+        <button type="button" class="btn ghost small" id="randomBtn">Verras me</button>
+      </div>
+      <div class="sub">Kleine regel onderaan (mag leeg)</div>
+      <input type="text" id="caption" name="caption" maxlength="40" placeholder="Bijv. Voor oma, 2026" aria-label="Kleine regel onderaan">
+    </fieldset>
+
+    <fieldset>
+      <legend>Letters</legend>
+      <div class="chips">
+        <label class="chip"><input type="radio" name="font" value="klassiek" checked><span class="f-klassiek">Klassiek</span></label>
+        <label class="chip"><input type="radio" name="font" value="sierlijk"><span class="f-sierlijk">Sierlijk</span></label>
+        <label class="chip"><input type="radio" name="font" value="hand"><span class="f-hand">Handschrift</span></label>
+        <label class="chip"><input type="radio" name="font" value="gotisch"><span class="f-gotisch">Gotisch</span></label>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Verf</legend>
+      <div class="chips">
+        <label class="chip"><input type="radio" name="color" value="blauw" checked><span><i class="dot" style="background:#1F3D92"></i>Delfts blauw</span></label>
+        <label class="chip"><input type="radio" name="color" value="mangaan"><span><i class="dot" style="background:#5A3550"></i>Mangaan</span></label>
+        <label class="chip"><input type="radio" name="color" value="groen"><span><i class="dot" style="background:#2D5E46"></i>Groen</span></label>
+        <label class="chip"><input type="radio" name="color" value="rood"><span><i class="dot" style="background:#9A2E25"></i>Rood</span></label>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Versiering</legend>
+      <div class="sub" style="margin-top:0">Plaatje</div>
+      <div class="chips">
+        <label class="chip"><input type="radio" name="motif" value="geen"><span>Geen</span></label>
+        <label class="chip"><input type="radio" name="motif" value="molen" checked><span>Molen</span></label>
+        <label class="chip"><input type="radio" name="motif" value="schip"><span>Scheepje</span></label>
+        <label class="chip"><input type="radio" name="motif" value="tulp"><span>Tulp</span></label>
+        <label class="chip"><input type="radio" name="motif" value="hart"><span>Hartje</span></label>
+      </div>
+      <div class="sub">Hoekjes</div>
+      <div class="chips">
+        <label class="chip"><input type="radio" name="corner" value="ossenkop" checked><span>Ossenkop</span></label>
+        <label class="chip"><input type="radio" name="corner" value="spin"><span>Spinnetje</span></label>
+        <label class="chip"><input type="radio" name="corner" value="geen"><span>Geen</span></label>
+      </div>
+      <label class="toggle"><input type="checkbox" name="border" checked> Lijstje langs de rand</label>
+    </fieldset>
+
+    <fieldset>
+      <legend>Versturen</legend>
+      <div class="chips">
+        <label class="chip"><input type="radio" name="format" value="foto" checked><span>Foto</span></label>
+        <label class="chip"><input type="radio" name="format" value="gif"><span>Bewegende gif</span></label>
+      </div>
+      <div id="animRow" class="hidden">
+        <div class="sub">Beweging</div>
+        <div class="chips">
+          <label class="chip"><input type="radio" name="anim" value="schrijven" checked><span>Wordt geschreven</span></label>
+          <label class="chip"><input type="radio" name="anim" value="glans"><span>Glimt</span></label>
+          <label class="chip"><input type="radio" name="anim" value="wiebel"><span>Wiebelt</span></label>
+        </div>
+      </div>
+      <div class="actions">
+        <button type="button" class="btn primary" id="saveBtn">Foto opslaan</button>
+        <button type="button" class="btn ghost hidden" id="shareBtn">Delen…</button>
+      </div>
+      <p class="status" id="status" aria-live="polite"></p>
+    </fieldset>
+  </form>
+</main>
+
+<div class="fallback hidden" id="fallback" role="dialog" aria-modal="true" aria-label="Je tegeltje">
+  <div class="fallback-card">
+    <img id="fallbackImg" alt="Je tegeltje">
+    <p>Houd de afbeelding ingedrukt (telefoon) of klik er met rechts op (computer) en kies ‘Afbeelding opslaan’.</p>
+    <button type="button" class="btn primary" id="fallbackClose">Sluiten</button>
+  </div>
+</div>
+
+</body>
+</html>
